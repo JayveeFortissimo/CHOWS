@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query';
 
 const initialState = {
       name:'',
-      phone_Number:'',
+      phone:'',
       email:'',
       message:''
 };
+
 
 export const GmailSlice = createSlice({
     name:'gmail_Forms',
@@ -15,14 +15,20 @@ export const GmailSlice = createSlice({
        Informations(state,action){
         const {type,value} = action.payload;
         state[type] = value;
-        console.log(initialState)
+       },
+       clear_Message(state,action){
+          return{
+            ...state,
+            name:'',
+            phone:'',
+            email:'',
+            message:''
+          }
        }
     }
 });
 
-
-//Export the slioces actions HA!
-export const {Informations} = GmailSlice.actions;
+export const { Informations,clear_Message } = GmailSlice.actions;
 
 
 export default GmailSlice.reducer;
